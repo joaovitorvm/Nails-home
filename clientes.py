@@ -20,7 +20,15 @@ def menu_clientes(dados_clientes, grava_dados_clientes):
             print('='*36)
             print(f" \033[1;35m {'CADASTRAR CLIENTES':.^34} \033[m ")
             print('='*36)
-            cpf = input("|-- CPF: ")
+            valida_cpf = True
+            while valida_cpf:
+                cpf = input("|-- CPF (apenas números): ")            
+                if validacao.valida_cpf(cpf):
+                    print("CPF armazenado com sucesso!")
+                    valida_cpf = False
+                else:
+                    print(" \033[1;31m Erro: Digite exatamente 11 números, sem pontos ou traços! \033[m ")
+                    print()
             valida_telefone = True
             while valida_telefone:
                 print("Informe o número com DDD e 9 adicional\n(somente dígitos):")
@@ -44,9 +52,24 @@ def menu_clientes(dados_clientes, grava_dados_clientes):
                     print(f" \033[1;35m {'Não conseguimos validar seu Gmail!\nVerifique o formato e tente novamente.'} \033[m ")
                     print()
             print("=" * 36)
-            aniversario = input("|-- Data de Nasc. (DD/MM): ")
-            print("=" * 36)
-            contato = input("|-- Primeira vez: [S/N] ").upper()
+            valida_aniversario = True
+            while valida_aniversario:
+                print("A Data que ter exatamente 10 caracteres no total (Ex: 00/00/0000)")
+                aniversario = input("|-- Data de Nasc. (DD/MM/AAAA): ")
+                if validacao.validar_aniversario(aniversario):
+                    print(" \033[1;32m Data de aniversário armazenada! \033[m ")
+                    valida_aniversario = False
+                else:
+                    print("Erro: Digite apenas números para dia, mês e ano!")
+
+            valida_contato = True
+            while valida_contato:     
+                contato = input("|-- Primeira vez: [S/N] ").upper()
+                if contato == 'S' or contato == 'N':
+                    print(" \033[1;32m Resposta registrada! \033[m ")
+                    valida_contato = False
+                else:
+                    print(" \033[1;31m Erro: Digite apenas a letra S para Sim ou N para Não! \033[m ")
             print("=" * 36)
             print()
             dados_clientes[cpf] = [numero,nome,email,aniversario,contato,True]
@@ -68,7 +91,7 @@ def menu_clientes(dados_clientes, grava_dados_clientes):
             print('='*36)
             cpf_pesquisa = input("Insira o CPF do cliente para atualizar o cadastro: ")
             print()
-            if cpf_pesquisa in dados_clientes:     
+            if cpf_pesquisa in dados_clientes and dados_clientes[cpf_pesquisa][5] == True:
                 print("|-- Dados atuais da cliente: ")
                 print("|-- Numero: ", dados_clientes[cpf_pesquisa][0])
                 print("|-- Nome: ", dados_clientes[cpf_pesquisa][1])
@@ -86,7 +109,7 @@ def menu_clientes(dados_clientes, grava_dados_clientes):
            print('='*36)
            cpf = input("Insira o cpf do cliente, \npara pesquisar: ")
            print()
-           if cpf in dados_clientes:
+           if cpf in dados_clientes and dados_clientes[cpf][5] == True:
                print(" \033[1;35m Dados cadastrados: \033[m ")
                print("|-- Numero: ",dados_clientes[cpf][0])
                print("|-- Nome: ",dados_clientes[cpf][1],"--|")
