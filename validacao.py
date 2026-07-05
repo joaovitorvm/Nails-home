@@ -4,6 +4,12 @@ def valida_telefone(numero):
         return True   
     else:
         return False  
+def valida_cpf(cpf):
+    if  len(cpf) != 11  or not cpf.isdigit():
+        return False
+    else:
+        return True
+
 def validar_email(email):
     if "@gmail.com" in email:
         return True
@@ -23,3 +29,13 @@ def criar_id(lista):
         n5 = int(n1 + n2 + n3 + n4)
         c = 1
     return n5
+def valida_aniversario(aniversario):
+        if "/" in aniversario:
+            print("Data de aniversario armazenada!")
+            return True
+        else:
+            return False
+
+    
+#def valida_cpf
+#validar data
