@@ -4,7 +4,7 @@ def menu_agendamentos(dados_agendamentos, grava_dados_agendamentos):
     resp3 = ""
     while resp3 != '0': 
         print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-        print(f"|- \033[1;34m{'MÓDULO DE AGENDAMENTO':^30}\033[m -|")
+        print(f"|- \033[1;34m{'MÓDULO DE AGENDAMENTO':^34}\033[m -|") 
         print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
         print("|-  (1) - Agendar Novo Horário        -|")
         print("|-  (2) - Visualizar Agenda           -|")
@@ -56,7 +56,7 @@ def menu_agendamentos(dados_agendamentos, grava_dados_agendamentos):
             print('='*36)
             id_agendamento = input("Insira o Código do agendamento: ")
             print()       
-            if id_agendamento in dados_agendamentos and dados_agendamentos[id_agendamento][-1] == True:
+            if id_agendamento in dados_agendamentos and len(dados_agendamentos[id_agendamento]) > 4 and dados_agendamentos[id_agendamento][-1] == True:
                 print(" \033[1;35m Ficha da Marcação: \033[m ")
                 print(f"|-- Cliente: {dados_agendamentos[id_agendamento][0]}")
                 print(f"|-- Serviço: {dados_agendamentos[id_agendamento][1]}")
@@ -64,18 +64,16 @@ def menu_agendamentos(dados_agendamentos, grava_dados_agendamentos):
                 print(f"|-- Horário: {dados_agendamentos[id_agendamento][3]}")
                 print("=" * 36)
                 print()
-            else:
-                print(" \033[1;31m Agendamento não encontrado ou cancelado! \033[m ")
-                print()
-                
-            print(f" \033[1;35m {'Pesquisa concluída...'} \033[m ")
-            alerta = (r"""
+                print(f" \033[1;35m {'Pesquisa concluída...'} \033[m ")
+                alerta = (r"""
             >>=========================<<
             ||     BUSCA CONCLUÍDA!    ||
             ||    Agenda verificada    ||
             >>=========================<<
             """)
-            print(f"\033[1;33m {alerta} \033[m ")
+                print(f"\033[1;33m {alerta} \033[m ")
+            else:
+                print(" \033[1;31m Agendamento não encontrado ou cancelado! \033[m ")
             print()
             input("Tecle <ENTER> para continuar...")
             
@@ -86,7 +84,7 @@ def menu_agendamentos(dados_agendamentos, grava_dados_agendamentos):
             print('='*36)
             id_agendamento = input("Insira o Código do agendamento para alterar: ")
             print()
-            if id_agendamento in dados_agendamentos and dados_agendamentos[id_agendamento][-1] == True:
+            if id_agendamento in dados_agendamentos and len(dados_agendamentos[id_agendamento]) > 4 and dados_agendamentos[id_agendamento][-1] == True:
                 print(" \033[1;35m Dados Atuais da Marcação: \033[m ")             
                 print(f"|-- Cliente: {dados_agendamentos[id_agendamento][0]}")
                 print(f"|-- Serviço: {dados_agendamentos[id_agendamento][1]}")
@@ -118,7 +116,6 @@ def menu_agendamentos(dados_agendamentos, grava_dados_agendamentos):
                 print(f"\033[1;33m {alerta} \033[m ")
             else:
                 print(" \033[1;31m Agendamento não encontrado no sistema! \033[m ")
-                print()
             print()
             input("Tecle <ENTER> para continuar...")
             
@@ -130,7 +127,7 @@ def menu_agendamentos(dados_agendamentos, grava_dados_agendamentos):
             id_agendamento = input("Insira o Código do agendamento para cancelar: ")
             print()
             
-            if id_agendamento in dados_agendamentos and dados_agendamentos[id_agendamento][-1] == True:
+            if id_agendamento in dados_agendamentos and len(dados_agendamentos[id_agendamento]) > 4 and dados_agendamentos[id_agendamento][-1] == True:
                 print(" \033[1;35m Dados da Marcação: \033[m ")             
                 print(f"|-- Cliente: {dados_agendamentos[id_agendamento][0]}")
                 print(f"|-- Serviço: {dados_agendamentos[id_agendamento][1]}")
@@ -172,3 +169,4 @@ def menu_agendamentos(dados_agendamentos, grava_dados_agendamentos):
             >>======================<<
             """)     
             print(f" \033[1;35m {saida} \033[m ")
+            input("Tecle <ENTER> para continuar...")
