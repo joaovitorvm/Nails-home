@@ -56,7 +56,7 @@ def menu_clientes(dados_clientes, grava_dados_clientes):
             while valida_aniversario:
                 print("A Data que ter exatamente 10 caracteres no total (Ex: 00/00/0000)")
                 aniversario = input("|-- Data de Nasc. (DD/MM/AAAA): ")
-                if validacao.validar_aniversario(aniversario):
+                if validacao.valida_aniversario(aniversario):
                     print(" \033[1;32m Data de aniversário armazenada! \033[m ")
                     valida_aniversario = False
                 else:

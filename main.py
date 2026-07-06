@@ -3,6 +3,7 @@ import validacao
 import clientes
 import servico
 import agendamento
+import relatorios
 import subprocess
 
 
@@ -60,7 +61,6 @@ def grava_dados_agendamentos(dados_agendamentos):
 resp = '10'
 
 while (resp != '0'): 
-    os.system('cls || clear')
     mensagem = (r"""
  _   _         _  _               _
 | \ | |       (_)| |             | |
@@ -97,53 +97,36 @@ while (resp != '0'):
     elif resp == '3':
         agendamento.menu_agendamentos(dados_agendamentos, grava_dados_agendamentos)
     elif resp == '4':
-        validacao.limpar()
-        print('='*36)
-        print(fr"|{'MODÚLO RELATÓRIO':.^34}|")
-        print(fr"/|!/{'_'*30}\|")
-        print(fr"/|{'_(1)-FATURAMENTO TOTAL: _':.^32}\|")
-        print(fr"/|{'_(2)-MEIOS DE PAGAMENTO: _':.^32}\|")
-        print(fr"/|{'_(3)-CONTROLE DE DESPESAS: _':.^32}\|")
-        print(fr"/|{'_(0)-SAIR: _':.^32}\|")
-        print(fr"/|!/{'_'*30}\!")
-        print(fr"{'=/'*17}\\")
-        print()
-        resp4 = input("Selecione uma das opções: ")
-        print()    
-        if resp4 == '1':
-           print('='*36)
-           print(f" \033[1;35m {'FATURAMENTO TOTAL':.^34} \033[m ")
-           print('='*36) 
+        relatorios.menu_relatorios(dados_clientes, dados_servicos, dados_agendamentos)   
     elif resp == '5':
         validacao.limpar()
         saida = (r"""
-        >>======================<<
-        || <<< MÓDULO SOBRE >>> ||
-        **************************
-        ||     OBRIGADO POR     ||
-        ||UTILIZAR O GERENCIADOR||
-        ||     NAILS HOUSE :)   ||
-        >>======================<<
+        >>==================================<<
+        ||       <<< MÓDULO SOBRE >>>       ||
+        **************************************
+        ||            NAILS HOME            ||
+        ||   Sistema de Gerenciamento de    ||
+        ||   Salão de Beleza e Manicure     ||
+        >>==================================<<
         """)
         print(f" \033[1;35m {saida} \033[m ")
+        print()
+        input("Aperte (ENTER) para retornar ao menu principal...")
 
-    elif resp== '0':
+    elif resp == '0':
         validacao.limpar()
         saida = (r"""
         >>======================<<
         || <<< MÓDULO SAÍDA >>> ||
         **************************
-        ||     OBRIGADO POR     ||
-        ||UTILIZAR O GERENCIADOR||
-        ||     NAILS HOUSE :)   ||
+        ||     SAINDO DO        ||
+        ||     SISTEMA...       ||
+        ||   ATÉ A PRÓXIMA! :)  ||
         >>======================<<
         """)
         print(f" \033[1;35m {saida} \033[m ")
 
-    #fim da primeira parte
-
 grava_dados_clientes(dados_clientes)
 grava_dados_servicos(dados_servicos)
 grava_dados_agendamentos(dados_agendamentos)
-
     

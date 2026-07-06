@@ -4,7 +4,7 @@ def menu_servicos(dados_servicos, grava_dados_servicos):
     resp2 = ""
     while resp2 != '0':
         print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-        print(f"|- \033[1;34m{'MÓDULO DE SERVIÇOS':^34}\033[m -|") 
+        print(f"|- \033[1;34m{'MÓDULO DE SERVIÇOS':^34}\033[m -|")
         print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
         print("|-  (1) - Cadastrar Novo Serviço      -|")
         print("|-  (2) - Pesquisar Serviço           -|")
@@ -51,6 +51,11 @@ def menu_servicos(dados_servicos, grava_dados_servicos):
             print('='*36)
             id_servico = input("Insira o ID do serviço, \npara pesquisar: ")
             print()
+            
+            # TRUQUE DE MESTRE: Busca tanto como texto quanto como número inteiro!
+            if id_servico.isdigit() and int(id_servico) in dados_servicos:
+                id_servico = int(id_servico)
+                
             if id_servico in dados_servicos and len(dados_servicos[id_servico]) > 3 and dados_servicos[id_servico][-1] == True:
                 print(" \033[1;35m Serviços cadastrados: \033[m ")
                 print("|-- Nome do serviço: ", dados_servicos[id_servico][0], "--|")
@@ -80,6 +85,11 @@ def menu_servicos(dados_servicos, grava_dados_servicos):
             print('='*36)
             id_servico = input("Insira o id do serviço, \npara alterar:  ")      
             print()
+            
+            # TRUQUE DE MESTRE: Busca tanto como texto quanto como número inteiro!
+            if id_servico.isdigit() and int(id_servico) in dados_servicos:
+                id_servico = int(id_servico)
+                
             if id_servico in dados_servicos and len(dados_servicos[id_servico]) > 3 and dados_servicos[id_servico][-1] == True:
                 print(" \033[1;35m Dados dos serviços cadastrados: \033[m ")
                 print("|-- Nome do serviço: ", dados_servicos[id_servico][0], "--|")
@@ -118,6 +128,11 @@ def menu_servicos(dados_servicos, grava_dados_servicos):
             print('='*36)
             id_servico = input("Insira o ID do serviço, \npara excluir: ")
             print()
+            
+            # TRUQUE DE MESTRE: Busca tanto como texto quanto como número inteiro!
+            if id_servico.isdigit() and int(id_servico) in dados_servicos:
+                id_servico = int(id_servico)
+                
             if id_servico in dados_servicos and len(dados_servicos[id_servico]) > 3 and dados_servicos[id_servico][-1] == True:
                 print(" \033[1;35m Dados dos serviços cadastrados: \033[m ")
                 print("|-- Nome do serviço: ", dados_servicos[id_servico][0], "--|")
